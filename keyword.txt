@@ -1,0 +1,43 @@
+#######################################
+# Syntax Coloring Map For Button_CB Class
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+Button_CB KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+begin KEYWORD2
+loop KEYWORD2
+
+getClickCount KEYWORD2
+getClickElapsedTime KEYWORD2
+getEvent KEYWORD2
+
+LongClick_Abort KEYWORD2
+
+setDebounce KEYWORD2
+getDebounce KEYWORD2
+setDoubleClickDelay KEYWORD2
+getDoubleClickDelay KEYWORD2
+setLongClickStartDelay KEYWORD2
+getLongClickStartDelay KEYWORD2
+setLongClickPulseDelay KEYWORD2
+getLongClickPulseDelay KEYWORD2
+
+#######################################
+# Structure (KEYWORD3)
+#######################################
+
+######################################
+# Constants (LITERAL1)
+#######################################
+BTN_CLICK_EVENT LITERAL1
+BTN_DOUBLECLICK_EVENT LITERAL1
+BTN_MULTICLICK_EVENT LITERAL1
+BTN_LONGCLICK_DETECT_EVENT LITERAL1
+BTN_LONGCLICK_PULSE_EVENT LITERAL1
+BTN_LONGCLICK_EVENT LITERAL1

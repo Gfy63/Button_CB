@@ -1,0 +1,25 @@
+{
+    "name": "Button_CB",
+    "version": "0.1.1",
+    "description": "Button control with event. Detect Click, DoubleClick MultiClick and LongClick. Also has LongClickPulse.",
+    "keywords": "",
+    "repository":
+    {
+      "type": "git",
+      "url": "https://github.com/Gfy63/ParseCommands.git"
+    },
+     "authors":
+    [
+      {
+        "name": "Gfy63",
+        "email": "mrgoofy@gmx.net",
+        "maintainer": true
+      }
+    ],
+    "license": "GPL-2.0",
+    "homepage": "https://github.com/Gfy63/ParseCommands/",
+    "dependencies": {
+    },
+    "frameworks": ["Arduino"],
+    "platforms": "*"
+  }
