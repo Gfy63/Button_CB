@@ -2,9 +2,9 @@
  * @file    Button_CB.cpp
  * @author  Gfy63 (mrgoofy@gmx.net)
  * 
- * GPLv2 Licence https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
+ * Licence: MIT
  * 
- * @copyright 2024
+ * @copyright 2024-26
  **********************************/
 
 #include "Button_CB.h"
@@ -13,21 +13,45 @@
  * --- PUBLIC FUNCTIONS ---
 */
 
-//--- Constructor ---
+/*----------------------------------
+	CONSTRUCTOR & BEGIN
+----------------------------------*/
 
+/**
+ * @brief Constructors.
+ */
 Button_CB::Button_CB() {}
+
+/**
+ * @brief Constructors.
+ * @param   pin Button pin.
+ * @param   cb Callback function for Event calls.
+ */
 Button_CB::Button_CB( byte pin, CallbackFunction cb )
 {
 	begin( pin, cb );
 
 } // Button_CB()
 
+/**
+ * @brief Constructors.
+ * @param   pin Button pin.
+ * @param   btnMode Button mode.INPUT or INPUT_PULLUP. (default: INPUT_PULLUP) (optional)
+ * @param   cb Callback function for Event calls.
+ */
 Button_CB::Button_CB( byte pin, byte btnMode, CallbackFunction cb )
 {
 	begin( pin, btnMode, cb );
 
 } // Button_CB()
 
+/**
+ * @brief Constructors.
+ * @param   pin Button pin.
+ * @param   btnMode Button mode.INPUT or INPUT_PULLUP. (default: INPUT_PULLUP) (optional)
+ * @param	activeLow True or false. (default: true) (optional)
+ * @param   cb Callback function for Event calls.
+ */
 Button_CB::Button_CB( byte pin, byte btnMode, bool activeLow, CallbackFunction cb )
 {
 	begin( pin, btnMode, activeLow, cb );
@@ -36,18 +60,36 @@ Button_CB::Button_CB( byte pin, byte btnMode, bool activeLow, CallbackFunction c
 
 ////////////////////////////////////
 
+/**
+ * @brief Start with the configuration.
+ * @param   pin Button pin.
+ * @param   cb Callback function for Event calls.
+ */
 void Button_CB::begin( byte pin, CallbackFunction cb )
 {
 	begin( pin, INPUT_PULLUP, true, cb );
 
 } // begin()
 
+/**
+ * @brief Start with the configuration.
+ * @param   pin Button pin.
+ * @param   btnMode Button mode.INPUT or INPUT_PULLUP. (default: INPUT_PULLUP) (optional)
+ * @param   cb Callback function for Event calls.
+ */
 void Button_CB::begin( byte pin, byte btnMode, CallbackFunction cb )
 {
 	begin( pin, btnMode, true, cb );
 
 } // begin()
 
+/**
+ * @brief Start with the configuration.
+ * @param   pin Button pin.
+ * @param   btnMode Button mode.INPUT or INPUT_PULLUP. (default: INPUT_PULLUP) (optional)
+ * @param	activeLow True or false. (default: true) (optional)
+ * @param   cb Callback function for Event calls.
+ */
 void Button_CB::begin( byte pin, byte btnMode, bool activeLow, CallbackFunction cb )
 {
 	// Copy data to private.
@@ -64,6 +106,13 @@ void Button_CB::begin( byte pin, byte btnMode, bool activeLow, CallbackFunction 
 
 ////////////////////////////////////
 
+/*----------------------------------
+	PUBLIC FUNCTION
+----------------------------------*/
+
+/**
+ * @brief Button master loop.
+*/
 void Button_CB::loop( void )
 {
 
@@ -161,7 +210,6 @@ void Button_CB::loop( void )
 				// Click end.
 				// Call Click callback
 
-
 				switch( _click_cnt )
 				{
 					case 1:
@@ -182,7 +230,6 @@ void Button_CB::loop( void )
 						event = BTN_MULTICLICK_EVENT;
 						btnDbg_printf( "pb: - %u - MultiClick.", millis() );
 						break;
-
 				}
 
 				btnDbg_printf( " last Clicktime: %u Clicks: %i\n", _dclick_check_start - _click_start_time, _click_cnt );
@@ -237,6 +284,10 @@ void Button_CB::loop( void )
 
 ////////////////////////////////////
 
+/**
+ * @brief get the Click count if event is MULTICLICK_EVENT.
+ * @return	Click count.
+*/
 int Button_CB::getClickCount( void )
 {
 	return _click_cnt;
@@ -245,6 +296,10 @@ int Button_CB::getClickCount( void )
 
 ////////////////////////////////////
 
+/**
+ * @brief get the duration of the running or last click.
+ * @return	Click duration.
+*/
 unsigned int Button_CB::getClickElapsedTime( void )
 {
 	return _clickElapseTime;
@@ -253,6 +308,10 @@ unsigned int Button_CB::getClickElapsedTime( void )
 
 ////////////////////////////////////
 
+/**
+ * @brief get last event.
+ * @return	Event.
+*/
 int Button_CB::getEvent( void )
 {
 	return _event;
@@ -261,6 +320,10 @@ int Button_CB::getEvent( void )
 
 ////////////////////////////////////
 
+/**
+ * @brief Stop callback BTN_LONGCLICK_PULSE_EVENT and BTN_LONGCLICK_EVENT.
+ *			Use if longClick time is reached.
+*/
 void Button_CB::LongClick_Abort( void )
 {
 	_lclick_abort = true;
@@ -269,12 +332,20 @@ void Button_CB::LongClick_Abort( void )
 
 ////////////////////////////////////
 
+/**
+ * @brief Set/get the button debounce delay.
+ * @param debounce Debounce delay in mSec.
+*/
 void Button_CB::setDebounceDelay( unsigned int debounce )
 {
 	_debounce_delay = debounce;
 
 } // setDebounceDelay()
 
+/**
+ * @brief 	Set/get the button debounce delay.
+ * @return	Debounce delay in mSec.
+*/
 unsigned int Button_CB::getDebounceDelay( void )
 {
 	return _debounce_delay;
@@ -283,12 +354,20 @@ unsigned int Button_CB::getDebounceDelay( void )
 
 ////////////////////////////////////
 
+/**
+ * @brief Set/get the DoubleClick delay. Time from release to next press of the button.
+ * @param dclickDelay DoubleClick delay in mSec.
+*/
 void Button_CB::setDoubleClickDelay( unsigned int dclickDelay )
 {
 	_dclick_delay = dclickDelay;
 
 } // setDoubleClickDelay()
 
+/**
+ * @brief 	Set/get the DoubleClick delay. Time from release to next press of the button.
+ * @return	DoubleClick delay in mSec.
+*/
 unsigned int Button_CB::getDoubleClickDelay( void )
 {
 	return _dclick_delay;
@@ -297,12 +376,20 @@ unsigned int Button_CB::getDoubleClickDelay( void )
 
 ////////////////////////////////////
 
+/**
+ * @brief Set/get the LongClick start delay, from then on the button press is a LongClick.
+ * @param lclickStartDelay LongClick start delay in mSec.
+*/
 void Button_CB::setLongClickStartDelay( unsigned int lclickStartDelay )
 {
 	_lclick_start_delay = lclickStartDelay;
 
 } // setLongClickStartDelay()
 
+/**
+ * @brief Set/get the LongClick start delay, from then on the button press is a LongClick.
+ * @return	LongClick start delay in mSec.
+*/
 unsigned int Button_CB::getLongClickStartDelay( void )
 {
 	return _lclick_start_delay;
@@ -311,12 +398,20 @@ unsigned int Button_CB::getLongClickStartDelay( void )
 
 ////////////////////////////////////
 
+/**
+ * @brief Set/get the delay beween to LongClickPulses.
+ * @param lclickPulseDelay LongClick pulse delay in mSec.
+*/
 void Button_CB::setLongClickPulseDelay( unsigned int lclickPulseDelay )
 {
 	_lclick_pulse_delay = lclickPulseDelay;
 
 } // setLongClickPulseDelay()
 
+/**
+ * @brief Set/get the delay beween to LongClickPulses.
+ * @return	LongClick pulse delay in mSec.
+*/
 unsigned int Button_CB::getLongClickPulseDelay( void )
 {
 	return _lclick_start_delay;
@@ -325,10 +420,15 @@ unsigned int Button_CB::getLongClickPulseDelay( void )
 
 ////////////////////////////////////
 
-/**
- * --- PRIVATE FUNCTIONS ---
-*/
+/*----------------------------------
+	PRIVATE FUNCTION
+----------------------------------*/
 
+/**
+ * @brief 	Wait for debounce time to elapse.
+ * @param	debounceStart Starttime for debounce.
+ * @return	True - Debounce time elapse.
+ */
 bool Button_CB::WaitDebounceElapse( unsigned long debounceStart )
 {
 	// btnDbg_printf( "pb: - %ul - WaitDebounceElapse() Delay: %i > _debounce_delay %i\n", millis(), millis()-debounceStart, _debounce_delay );
@@ -340,9 +440,15 @@ bool Button_CB::WaitDebounceElapse( unsigned long debounceStart )
 
 ////////////////////////////////////
 
+/**
+ * @brief 	Fire the callback function.
+ * @param	event Event to send with.
+ */
 void Button_CB::FireCallback( int event )
 {
-	if( _lclick_abort && ( event == BTN_LONGCLICK_PULSE_EVENT || BTN_LONGCLICK_EVENT ) ) return;
+	if( _lclick_abort && ( event == BTN_LONGCLICK_PULSE_EVENT || event == BTN_LONGCLICK_EVENT ) ) return;
+
+	Serial.printf( "Send event: %i\n", event );
 
 	_event = event;
 	if( _cb != NULL ) _cb( event );
@@ -351,6 +457,10 @@ void Button_CB::FireCallback( int event )
 
 ////////////////////////////////////
 
+/**
+ * @brief 	Is the button pressed?
+ * @return	true if pressed.
+ */
 bool Button_CB::IsBtnPressed( void )
 {
 	return  digitalRead( _pin ) == _buttonPressed;

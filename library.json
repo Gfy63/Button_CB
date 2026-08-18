@@ -1,6 +1,6 @@
 {
     "name": "Button_CB",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Button control with event. Detect Click, DoubleClick MultiClick and LongClick. Also has LongClickPulse.",
     "keywords": "",
     "repository":
