@@ -100,8 +100,6 @@ void Button_CB::begin( byte pin, byte btnMode, bool activeLow, CallbackFunction 
 
 } // begin()
 
-////////////////////////////////////
-
 /*----------------------------------
 	PUBLIC FUNCTION
 ----------------------------------*/
