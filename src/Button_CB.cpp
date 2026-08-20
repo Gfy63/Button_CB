@@ -9,10 +9,6 @@
 
 #include "Button_CB.h"
 
-/**
- * --- PUBLIC FUNCTIONS ---
-*/
-
 /*----------------------------------
 	CONSTRUCTOR & BEGIN
 ----------------------------------*/
@@ -100,7 +96,7 @@ void Button_CB::begin( byte pin, byte btnMode, bool activeLow, CallbackFunction 
 
 	pinMode( _pin, _btnMode );
 
-	btnDbg_printf( "pb: - %ul - Pin: %i - Mode: %i - activeLow: %i\n", millis(), pin, btnMode, activeLow );
+	// btnDbg_printf( "pb: - %ul - Pin: %i - Mode: %i - activeLow: %i\n", millis(), pin, btnMode, activeLow );
 
 } // begin()
 
@@ -115,7 +111,6 @@ void Button_CB::begin( byte pin, byte btnMode, bool activeLow, CallbackFunction 
 */
 void Button_CB::loop( void )
 {
-
 	static unsigned long _click_start_time;			// Start time a click cycle. (mSec)
 	static unsigned long _dclick_check_start;		// Start time for DounbleClick check. (mSec)
 	static unsigned long _debounceStart;			// Start time for debounce. (mSec)
@@ -280,6 +275,7 @@ void Button_CB::loop( void )
 			btnDbg_printf( "pb: - %ul - default: cycle= %i\n", millis(), _cycle );
 			break;
 	}
+
 } // loop()
 
 ////////////////////////////////////
@@ -446,9 +442,7 @@ bool Button_CB::WaitDebounceElapse( unsigned long debounceStart )
  */
 void Button_CB::FireCallback( int event )
 {
-	if( _lclick_abort && ( event == BTN_LONGCLICK_PULSE_EVENT || event == BTN_LONGCLICK_EVENT ) ) return;
-
-	Serial.printf( "Send event: %i\n", event );
+	if( _lclick_abort && ( event == BTN_LONGCLICK_PULSE_EVENT || event ==  BTN_LONGCLICK_EVENT ) ) return;
 
 	_event = event;
 	if( _cb != NULL ) _cb( event );
