@@ -8,7 +8,8 @@ Button_CB btn;
 
 #define btn_pin 	33
 
-void setup() {
+void setup() 
+{
 	Serial.begin(115200);
 
 	pinMode( btn_pin, PULLUP );
@@ -16,7 +17,8 @@ void setup() {
 	btn.begin( btn_pin, INPUT, false, BTN_Handler );
 }
 
-void loop() {
+void loop()
+{
 	
 	btn.loop();
 

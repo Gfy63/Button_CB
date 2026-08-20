@@ -67,7 +67,6 @@ BTN_LONGCLICK_PULSE_EVENT,		// LongClick pulse.
 BTN_LONGCLICK_EVENT				// LongClick (end)
 ```
 
-
 ### Callback function
 ```cpp
 void BTN_Handler( unsigned int event )
